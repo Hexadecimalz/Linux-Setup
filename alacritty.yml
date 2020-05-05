@@ -4,8 +4,8 @@ background_opacity: .95
 
 window:
   dimensions:
-    columns: 105
-    lines: 30
+    columns: 80
+    lines: 20
 
   padding:
     x: 10
@@ -75,7 +75,7 @@ font:
     # Style can be specified to pick a specific face.
     style: Bold
 
-  size: 14.5
+  size: 12
   offset:
     x: 0
     y: 2
@@ -150,10 +150,10 @@ key_bindings:
   - { key: Delete,                        chars: "\x1b[3~"                     }
 
     # shortcuts for tmux. the leader key is control-b (0x02)
-  - { key: W,        mods: Command,       chars: "\x02&"                       }  # close tab (kill)
+  - { key: D,        mods: Command,       chars: "\x02&"                       }  # close tab (Kill)
   - { key: T,        mods: Command,       chars: "\x02c"                       }  # new tab
-  - { key: RBracket, mods: Command|Shift, chars: "\x02n"                       }  # select next tab
-  - { key: LBracket, mods: Command|Shift, chars: "\x02p"                       }  # select previous tab
-  - { key: RBracket, mods: Command,       chars: "\x02o"                       }  # select next pane
-  - { key: LBracket, mods: Command,       chars: "\x02;"                       }  # select last (previously used) pane
+  - { key: RBracket, mods: Command, chars: "\x02n"                       }  # select next tab
+  - { key: LBracket, mods: Command, chars: "\x02p"                       }  # select previous tab
+  - { key: RBracket, mods: Shift,       chars: "\x02o"                       }  # select next pane
+  - { key: LBracket, mods: Shift,       chars: "\x02;"                       }  # select last (previously used) pane
   - { key: F,        mods: Command,       chars: "\x02/"                       }  # search (upwards) (see tmux.conf)
