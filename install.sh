@@ -31,4 +31,12 @@ pushd ~/.config/alacritty/
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/alacritty.yml 
 popd
 
+# Install Joplin 
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
+
+# Copy vimrc file 
+pushd ~/
+curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/.vimrc
+popd
+
 echo "Process complete"
