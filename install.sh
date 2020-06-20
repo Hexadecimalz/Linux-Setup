@@ -39,4 +39,24 @@ pushd ~/
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/.vimrc
 popd
 
+# Improve startup https://www.linux.com/topic/desktop/cleaning-your-linux-startup-process/ 
+
+# No more Apport
+sudo apt purge apport -y
+sudo systemctl stop whoopsie.service
+sudo systemctl disable whoopsie.service
+
+# No need for faily update
+sudo systemctl disable apt-daily.service
+sudo systemctl disable apt-daily.timer
+sudo systemctl disable apt-daily-upgrade.timer
+sudo systemctl disable apt-daily-upgrade.service
+
+#Install KDE 
+sudo apt install kde-full -y
+
+# Disable KDE Wallet
+kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'Enabled' 'false'
+kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'First Use' 'false'
+
 echo "Process complete"
