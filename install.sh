@@ -8,11 +8,12 @@ sudo apt install exfat-fuse -y
 sudp apt install exfat-utils -y 
 sudp apt install python3-distutils -y 
 sudo apt install ansible -y 
+sudo apt install vivaldi-stable -y
 # Download Vivaldi and Install How to get the latest? 
-pushd ~/Downloads/
-curl -O https://downloads.vivaldi.com/stable/vivaldi-stable_3.1.1929.34-1_amd64.deb
-sudo dpkg -i vivaldi-stable_3.1.1929.34-1_amd64.deb
-popd
+# pushd ~/Downloads/
+# curl -O https://downloads.vivaldi.com/stable/vivaldi-stable_3.1.1929.34-1_amd64.deb
+# sudo dpkg -i vivaldi-stable_3.1.1929.34-1_amd64.deb
+# popd
 
 # Victor Mono Font Install 
 # https://www.unixtutorial.org/how-to-install-ttf-fonts-in-linux/
