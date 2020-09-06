@@ -1,6 +1,6 @@
 #!/bin/bash
 #just a silly function print some water
-function waterfall () {
+function waterfall() {
         count="30"
         while [ $count -gt 0 ] ; do
                 line+="*"
