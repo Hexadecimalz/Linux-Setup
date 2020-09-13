@@ -1,2 +1,2 @@
-# Linux-Setup
+# 🐧 Linux-Setup
 Files for Linux Setup
