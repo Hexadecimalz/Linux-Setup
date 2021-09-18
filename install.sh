@@ -1,4 +1,13 @@
 #!/bin/bash
+
+#check for the correct OS before proceeding 
+if grep -q UBUNTU /etc/os-release
+then
+        echo "Initiating Installations..."
+else
+        exit 2
+fi
+
 #just a silly function print some water
 function waterfall() {
         count="30"
@@ -13,19 +22,13 @@ function waterfall() {
 function apt-fall() {
 # Install bare minimum before Ansible takes over
 echo "Beginning the Apt Waterfall, please wait!"
-sudo apt update -y 
-sudo apt upgrade -y 
-sudo apt install curl -y
-sudo apt install vim -y
-sudo apt install resolvconf -y
-sudo apt install exfat-fuse -y 
-sudp apt install exfat-utils -y 
-sudp apt install python3-distutils -y 
-sudo apt install ansible -y 
-sudo apt install preload -y
-sudo apt install fail2ban -y
+sudo apt update -y  && sudo apt upgrade -y 
+wait 
+sudo apt install curl vim resolvconf exfat-fuse exfat-utils python3-distutils ansible preload fail2ban -y
+wait
 # Install Joplin 
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
+wait
 #sudo apt install vivaldi-stable -y
 # Download Vivaldi and Install How to get the latest? 
 # pushd ~/Downloads/
@@ -41,7 +44,9 @@ echo "Attempting to install fonts"
 # https://www.unixtutorial.org/how-to-install-ttf-fonts-in-linux/
 pushd ~/Downloads/
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/VictorMonoAll-Font.zip
+wait
 unzip VictorMonoAll-Font.zip
+wait
 mkdir -p ~/.local/share/fonts 
 cp TTF/*ttf ~/.local/share/fonts/
 popd
@@ -49,11 +54,14 @@ popd
 
 function alacritty-setup (){
 # Install Alacritty and Reup the Config File 
-sudo add-apt-repository ppa:mmstick76/alacritty && sleep 5
+sudo add-apt-repository ppa:mmstick76/alacritty
+wait
 sudo apt install alacritty -y 
-mkdir ~/.config/alacritty
+wait
+mkdir -p  ~/.config/alacritty
 pushd ~/.config/alacritty/
-curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/alacritty.yml && sleep 5
+curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/alacritty.yml
+wait
 popd
 }
 
@@ -63,25 +71,36 @@ function basic-settings() {
 # Copy vimrc file 
 pushd ~/
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/.vimrc
+wait
 popd
 
 # No more Apport
 sudo apt purge apport -y
+wait
 sudo systemctl stop whoopsie.service
+wait
 sudo systemctl disable whoopsie.service
+wait
 
 # No need for daily update
 sudo systemctl disable apt-daily.service
+wait
 sudo systemctl disable apt-daily.timer
+wait
 sudo systemctl disable apt-daily-upgrade.timer
+wait
 sudo systemctl disable apt-daily-upgrade.service
+wait
 
 #Install KDE 
-sudo apt install kde-full -y && sleep 5 
+sudo apt install kde-full -y 
+wait
 
 # Disable KDE Wallet
 kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'Enabled' 'false'
+waot
 kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'First Use' 'false'
+wait
 }
 
 # Run the functions 
@@ -93,3 +112,4 @@ basic-settings
 
 waterfall
 echo "Process complete"
+exit 0 
