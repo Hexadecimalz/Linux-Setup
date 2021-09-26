@@ -14,7 +14,7 @@ function waterfall() {
         while [ $count -gt 0 ] ; do
                 line+="*"
                 echo "$line"
-                count=$[$count-1]
+                count=$((count-1))
         done
         echo -e  "$line\n"
 }
@@ -42,14 +42,14 @@ function font-install() {
 echo "Attempting to install fonts"
 # Victor Mono Font Install 
 # https://www.unixtutorial.org/how-to-install-ttf-fonts-in-linux/
-pushd ~/Downloads/
+pushd ~/Downloads/ || exit
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/VictorMonoAll-Font.zip
 wait
 unzip VictorMonoAll-Font.zip
 wait
 mkdir -p ~/.local/share/fonts 
 cp TTF/*ttf ~/.local/share/fonts/
-popd
+popd || exit
 }
 
 function alacritty-setup (){
@@ -59,20 +59,20 @@ wait
 sudo apt install alacritty -y 
 wait
 mkdir -p  ~/.config/alacritty
-pushd ~/.config/alacritty/
+pushd ~/.config/alacritty/ || exit
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/alacritty.yml
 wait
-popd
+popd || exit
 }
 
 function basic-settings() {
 # Improve startup https://www.linux.com/topic/desktop/cleaning-your-linux-startup-process/ 
 
 # Copy vimrc file 
-pushd ~/
+pushd ~/ || exit
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/.vimrc
 wait
-popd
+popd || exit
 
 # No more Apport
 sudo apt purge apport -y
