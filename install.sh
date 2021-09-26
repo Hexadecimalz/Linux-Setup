@@ -98,7 +98,7 @@ wait
 
 # Disable KDE Wallet
 kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'Enabled' 'false'
-waot
+wait
 kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'First Use' 'false'
 wait
 }
