@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#check for the correct OS before proceeding 
+#check for the correct OS before proceeding
 if grep -q UBUNTU /etc/os-release
 then
         echo "Initiating Installations..."
@@ -22,15 +22,15 @@ function waterfall() {
 function apt-fall() {
 # Install bare minimum before Ansible takes over
 echo "Beginning the Apt Waterfall, please wait!"
-sudo apt update -y  && sudo apt upgrade -y 
-wait 
+sudo apt update -y  && sudo apt upgrade -y
+wait
 sudo apt install curl vim resolvconf exfat-fuse exfat-utils python3-distutils ansible preload fail2ban -y
 wait
-# Install Joplin 
+# Install Joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
 wait
 #sudo apt install vivaldi-stable -y
-# Download Vivaldi and Install How to get the latest? 
+# Download Vivaldi and Install How to get the latest?
 # pushd ~/Downloads/
 # curl -O https://downloads.vivaldi.com/stable/vivaldi-stable_3.1.1929.34-1_amd64.deb
 # sudo dpkg -i vivaldi-stable_3.1.1929.34-1_amd64.deb
@@ -40,23 +40,23 @@ waterfall
 
 function font-install() {
 echo "Attempting to install fonts"
-# Victor Mono Font Install 
+# Victor Mono Font Install
 # https://www.unixtutorial.org/how-to-install-ttf-fonts-in-linux/
 pushd ~/Downloads/ || exit
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/VictorMonoAll-Font.zip
 wait
 unzip VictorMonoAll-Font.zip
 wait
-mkdir -p ~/.local/share/fonts 
+mkdir -p ~/.local/share/fonts
 cp TTF/*ttf ~/.local/share/fonts/
 popd || exit
 }
 
 function alacritty-setup (){
-# Install Alacritty and Reup the Config File 
+# Install Alacritty and Reup the Config File
 sudo add-apt-repository ppa:mmstick76/alacritty
 wait
-sudo apt install alacritty -y 
+sudo apt install alacritty -y
 wait
 mkdir -p  ~/.config/alacritty
 pushd ~/.config/alacritty/ || exit
@@ -66,9 +66,9 @@ popd || exit
 }
 
 function basic-settings() {
-# Improve startup https://www.linux.com/topic/desktop/cleaning-your-linux-startup-process/ 
+# Improve startup https://www.linux.com/topic/desktop/cleaning-your-linux-startup-process/
 
-# Copy vimrc file 
+# Copy vimrc file
 pushd ~/ || exit
 curl -O https://raw.githubusercontent.com/Hexadecimalz/Linux-Setup/master/.vimrc
 wait
@@ -92,8 +92,19 @@ wait
 sudo systemctl disable apt-daily-upgrade.service
 wait
 
-#Install KDE 
-sudo apt install kde-full -y 
+#Install some things
+sudo apt install kde-full -y
+wait
+
+sudo apt install git -y
+wait
+
+sudo apt install tmux -y
+wait
+
+curl -O https://github.com/Zettlr/Zettlr/releases/download/v2.2.3/Zettlr-2.2.3-amd64.deb
+wait
+sudo apt install -y ./Zettlr-2.2.3-amd64.deb
 wait
 
 # Disable KDE Wallet
@@ -103,7 +114,7 @@ kwriteconfig5 --file kwalletrc --group 'Wallet' --key 'First Use' 'false'
 wait
 }
 
-# Run the functions 
+# Run the functions
 apt-fall
 clear
 font-install
@@ -112,4 +123,4 @@ basic-settings
 
 waterfall
 echo "Process complete"
-exit 0 
+exit 0

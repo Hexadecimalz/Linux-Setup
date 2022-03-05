@@ -1,7 +1,5 @@
-"set bg=dark ai tabstop=2 expandtab
+set bg=dark ai tabstop=2 expandtab
 abbr _bang #!/bin/bash<CR>
-
-https://raw.githubusercontent.com/linuxacademy/content-python3-sysadmin/master/helpers/vimrc
 
 set nocompatible
 
@@ -17,6 +15,9 @@ set autoindent
 set backspace=indent,eol,start
 set incsearch
 set hlsearch
+
+" Set jk to esc
+inoremap <special> jk <ESC>
 
 " Basic vim settings
 set hidden
